@@ -41,11 +41,7 @@ export const getKas = async (req, res) => {
       },
     });
 
-    const dataPemasukkan = Object.values(data_pemasukkan[0])[0].jml_pemasukkan;
-
-    if(!dataPemasukkan){
-      dataPemasukkan = 0;
-    }
+    const dataPemasukkan = Object.values(data_pemasukkan[0]);
 
     const data_pengeluaran = await Kas.findAll({
       attributes: [
@@ -66,11 +62,7 @@ export const getKas = async (req, res) => {
       },
     });
 
-    var dataPengeluaran = Object.values(data_pengeluaran[0])[0].jml_pengeluaran;
-
-    if(!dataPengeluaran){
-      dataPengeluaran = 0;
-    }
+    var dataPengeluaran = Object.values(data_pengeluaran[0]);
 
     const data_saldo = await Kas.findOne({
       attributes: ["saldo"],
