@@ -1,7 +1,7 @@
 import express from 'express';
 import { getProducts, getProducId, saveProduct, updateProduct, deleteProduct } from '../controller/productController.js';
 import { Login, Register, verifyToken, Logout, ganti_password, Update, Delete, getUsers, getUser } from '../controller/userController.js'
-import { getKas, report_pemasukkan, report_pengeluaran, input_kas, update_kas, hapus_kas, report_saldo } from '../controller/kasController.js'
+import { getKas, report_pemasukkan, report_pengeluaran, input_kas, update_kas, hapus_kas, report_saldo, showGambar } from '../controller/kasController.js'
 import multer from 'multer';
 
 
@@ -43,7 +43,8 @@ router.get('/kas', verifyToken, getKas);
 router.post('/report_pemasukkan', verifyToken, uploads.none(), report_pemasukkan);
 router.post('/report_pengeluaran', verifyToken, uploads.none(), report_pengeluaran);
 router.post('/report_saldo', verifyToken, uploads.none(), report_saldo);
-router.post('/input_kas', verifyToken, uploads.single('gambar'), input_kas);
+router.post("/input_kas", verifyToken, uploads.array("gambar"), input_kas);
+router.get("/gambar/:id", verifyToken, showGambar);
 router.post('/update_kas/:id', verifyToken, uploads.single('gambar'), update_kas);
 router.post('/hapus_kas/:id', verifyToken, hapus_kas);
 
