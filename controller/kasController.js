@@ -358,10 +358,9 @@ export const update_kas = async (req, res) => {
     const pemasukkan_awal = data_awal[0].pemasukkan;
     const pengeluaran_awal = data_awal[0].pengeluaran;
 
-    if (req.files) {
+    if (req.files.length != 0) {
       await Kas.update(
         {
-          gambar: filename,
           deskripsi: deskripsi,
           pemasukkan: pemasukkan,
           pengeluaran: pengeluaran,
@@ -499,8 +498,42 @@ export const hapus_kas = async (req, res) => {
       },
     });
 
+    await Gambar.destroy({
+      where: {
+        id_kas: req.params.id,
+      },
+    });
+
     res.status(200).json({
       message: "Hapus data Kas berhasil",
+      success: true,
+    });
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
+export const hapus_gambar = async (req, res) => {
+  try {
+
+    const data_awal = await Gambar.findAll({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (fs.existsSync("./public/bukti_kas/" + data_awal[0].gambar)) {
+      fs.unlinkSync("./public/bukti_kas/" + data_awal[0].gambar);
+    }
+
+    await Gambar.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    res.status(200).json({
+      message: "Hapus data Gambar berhasil",
       success: true,
     });
   } catch (error) {

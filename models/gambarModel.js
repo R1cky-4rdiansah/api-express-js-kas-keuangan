@@ -30,6 +30,6 @@ const Gambar = db.define(
 
 export default Gambar;
 
-// (async() => {
-//       await db.sync();
-// })();
+(async() => {
+      await db.sync();
+})();
