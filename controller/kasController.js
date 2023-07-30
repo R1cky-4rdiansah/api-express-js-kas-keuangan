@@ -64,10 +64,14 @@ export const getKas = async (req, res) => {
 
     var dataPengeluaran = Object.values(data_pengeluaran[0]);
 
-    const data_saldo = await Kas.findOne({
+    var data_saldo = await Kas.findOne({
       attributes: ["saldo"],
       order: [["id_kas", "desc"]],
     });
+
+    if(!data_saldo){
+      data_saldo = {saldo : 0};
+    }
 
     res.status(200).json({
       message: "Data semua produk",

@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('api_laravel', 'root', '',{
+const db = new Sequelize('kas_node_js', 'root', '',{
       host: 'localhost',
       dialect: 'mysql'
 });
