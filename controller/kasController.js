@@ -195,16 +195,7 @@ export const report_pengeluaran = async (req, res) => {
 
 export const input_kas = async (req, res) => {
   try {
-    var { deskripsi, pemasukkan, pengeluaran } = req.body;
-    const tgl_format = (value) => {
-      const datetgl1 = ("0" + value.getDate()).slice(-2);
-      const monthtgl1 = ("0" + (value.getMonth() + 1)).slice(-2);
-      const yeartgl1 = value.getFullYear();
-
-      return yeartgl1 + "-" + monthtgl1 + "-" + datetgl1;
-    };
-
-    const tanggal = tgl_format(new Date());
+    var { deskripsi, pemasukkan, pengeluaran, tanggal } = req.body;
 
     const gambar = req.files;
 
