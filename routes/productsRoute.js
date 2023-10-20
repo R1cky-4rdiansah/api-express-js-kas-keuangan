@@ -24,12 +24,18 @@ const uploads = multer({storage: storageMulter})
 
 const router = express.Router();
 
-router.get('/produk', verifyToken, getProducts);
-router.post('/detail/:id', getProducId);
-router.post('/update/:id', verifyToken, uploads.single('gambar'), updateProduct);
-router.post('/hapus/:id', verifyToken, deleteProduct);
-router.post('/simpan', verifyToken, uploads.single('gambar'), saveProduct);
+router.get("/produk", verifyToken, getProducts);
+router.post("/detail/:id", getProducId);
+router.post(
+  "/update/:id",
+  verifyToken,
+  uploads.single("gambar"),
+  updateProduct
+);
+router.post("/hapus/:id", verifyToken, deleteProduct);
+router.post("/simpan", verifyToken, uploads.single("gambar"), saveProduct);
 
+//Users
 router.get('/users', verifyToken, getUsers);
 router.get('/getUser/:id', verifyToken, getUser);
 router.post('/register', uploads.none(), Register);
@@ -39,6 +45,7 @@ router.post('/ganti_password', verifyToken, uploads.none(), ganti_password);
 router.post('/login', uploads.none(), Login);
 router.post('/logout', verifyToken, uploads.none(), Logout);
 
+//Kas
 router.get('/kas', verifyToken, getKas);
 router.post('/report_pemasukkan', verifyToken, uploads.none(), report_pemasukkan);
 router.post('/report_pengeluaran', verifyToken, uploads.none(), report_pengeluaran);

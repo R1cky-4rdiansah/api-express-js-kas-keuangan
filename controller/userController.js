@@ -75,9 +75,8 @@ export const verifyToken = (req, res, next) => {
       if(getToken == null) return res.status(401).json({
             'message': 'Anda tidak dapat mengakses link ini, harap login ulang'
       });
-      jwt.verify(getToken, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+      jwt.verify(getToken, process.env.ACCESS_TOKEN_SECRET, (err) => {
             if(err) return res.sendStatus(403);
-            req.username = decoded.username;
             next();
         })
 }
