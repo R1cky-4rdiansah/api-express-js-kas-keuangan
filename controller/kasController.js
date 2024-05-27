@@ -1,4 +1,4 @@
-import Kas from "../models/Kas.js";
+import Kas from "../models/kasModel.js";
 import fs from "fs";
 import { Op, Sequelize } from "sequelize";
 import Gambar from "../models/gambarModel.js";

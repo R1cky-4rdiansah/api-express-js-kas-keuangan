@@ -42,6 +42,6 @@ const Kas = db.define(
 
 export default Kas;
 
-(async() => {
-      await db.sync();
-})();
+// (async() => {
+//       await db.sync();
+// })();
