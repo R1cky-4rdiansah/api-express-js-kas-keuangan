@@ -1,7 +1,8 @@
 import Kas from "../models/kasModel.js";
 import fs from "fs";
-import { Op, Sequelize } from "sequelize";
+import { Op, QueryTypes, Sequelize } from "sequelize";
 import Gambar from "../models/gambarModel.js";
+import db from "../config/database.js";
 
 export const getKas = async (req, res) => {
   try {
@@ -69,8 +70,8 @@ export const getKas = async (req, res) => {
       order: [["id_kas", "desc"]],
     });
 
-    if(!data_saldo){
-      data_saldo = {saldo : 0};
+    if (!data_saldo) {
+      data_saldo = { saldo: 0 };
     }
 
     res.status(200).json({
@@ -146,6 +147,14 @@ export const report_pemasukkan = async (req, res) => {
         order: [["created_at", "desc"]],
       });
     }
+
+    // const query = await db.query(
+    //   "SELECT * FROM kas LEFT JOIN gambar_kas ON kas.id_kas = gambar_kas.id_kas WHERE kas.pemasukkan != 0",
+    //   {
+    //     type: QueryTypes.SELECT,
+    //   }
+    // );
+
     res.status(200).json({
       message: "Detail produk",
       success: true,
@@ -510,7 +519,6 @@ export const hapus_kas = async (req, res) => {
 
 export const hapus_gambar = async (req, res) => {
   try {
-
     const data_awal = await Gambar.findAll({
       where: {
         id: req.params.id,
