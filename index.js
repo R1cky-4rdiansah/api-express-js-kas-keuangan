@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import kasRoutes from './routes/kasRoute.js';
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 // import db2 from "./config/database2.js";
 
 const app = express();

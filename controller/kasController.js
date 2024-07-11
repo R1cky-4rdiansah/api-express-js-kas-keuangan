@@ -2,7 +2,6 @@ import Kas from "../models/kasModel.js";
 import fs from "fs";
 import { Op, QueryTypes, Sequelize } from "sequelize";
 import Gambar from "../models/gambarModel.js";
-import db from "../config/database.js";
 
 export const getKas = async (req, res) => {
   try {

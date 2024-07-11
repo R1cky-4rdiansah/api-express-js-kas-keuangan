@@ -1,2 +1,4 @@
-node_modules
+node_modules/
 .env
+public/bukti_kas/*
+!public/bukti_kas/.gitkeep
